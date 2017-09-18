@@ -75,6 +75,7 @@ fabric.properties
 jdbc.properties
 /src/main/resources/jdbc.properties
 /.scannerwork/
+/infra/
 
 # Persistence Folder for Docker Compose
 persistence/
