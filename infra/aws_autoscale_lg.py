@@ -23,6 +23,7 @@ def lg_create():
     samsara_lg = autoscaling.create_launch_configuration(
         LaunchConfigurationName='samsara-lg',
         ImageId='ami-ebd02392',
+        InstanceType='t2.micro',
         KeyName='ec2-samsara-key',
         SecurityGroups=['sg-a7214adf'],
         IamInstanceProfile='EC2',
