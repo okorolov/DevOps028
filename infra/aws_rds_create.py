@@ -5,7 +5,7 @@ import time
 
 print('Loading function')
 
-s3 = boto3.resource('s3', region='eu-west-1')
+s3 = boto3.resource('s3', region_name='eu-west-1')
 
 # Connect to S3 bucket and get the body of liquibase.properties file
 # Parse through liquibase.properties and take username, pass, and db name
@@ -25,7 +25,7 @@ def s3_get_properties():
 # Creates RDS instance with the defined settings
 def rds_create(db_username, db_password, db_name):
     print('Start RDS creation')
-    rds = boto3.client('rds', region='eu-west-1')
+    rds = boto3.client('rds', region_name='eu-west-1')
     # Try to delete an existing samsara rds
     print('Deleting OLD RDS, please wait...')
     try:
