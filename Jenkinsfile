@@ -33,7 +33,7 @@ pipeline {
 				sh "aws s3 --region eu-west-1 cp liquibase-3.5.3-bin.tar.gz	s3://samsara-infrastructure/liquibase-3.5.3-bin.tar.gz"
 				sh "aws s3 --region eu-west-1 cp postgresql-42.1.4.jar s3://samsara-infrastructure/postgresql-42.1.4.jar"
 				sh "aws s3 --region eu-west-1 cp liquibase/liquibase.properties s3://samsara-infrastructure/liquibase.properties"
-				sh "aws s3 --region eu-west-1 cp samsara_infra.tar.gz s3://samsara-infrastructure/samsara_infra.tar.gz
+				sh "aws s3 --region eu-west-1 cp samsara_infra.tar.gz s3://samsara-infrastructure/samsara_infra.tar.gz"
             }
 		}
 		stage('Prepare RDS') {
