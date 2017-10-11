@@ -10,17 +10,17 @@ def aws_status():
         for each in lvldown['Instances']:
              for i in each.items():
                  if (
-			'InstanceId' in i or
-			'PrivateDnsName' in i or
-			'PrivateIpAddress' in i or
-			'State' in i or
-			'VirtualizationType' in i or
-			'ImageId' in i or
-			'Architecture' in i or
-			'Hypervisor' in i or
-			'RootDeviceName' in i or
-			'InstanceType' in i
-		    ):
+            'InstanceId' in i or
+            'PrivateDnsName' in i or
+            'PrivateIpAddress' in i or
+            'State' in i or
+            'VirtualizationType' in i or
+            'ImageId' in i or
+            'Architecture' in i or
+            'Hypervisor' in i or
+            'RootDeviceName' in i or
+            'InstanceType' in i
+            ):
                      print(i)
 
 # Function to start an aws instance
