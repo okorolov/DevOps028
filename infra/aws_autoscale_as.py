@@ -22,7 +22,8 @@ def as_create():
         HealthCheckGracePeriod=120,
         MinSize=1,
         MaxSize=3,
-        DesiredCapacity=2
+        DesiredCapacity=2,
+        AvailabilityZones=['eu-west-1a']
     )
     print(samsara_as)
 
