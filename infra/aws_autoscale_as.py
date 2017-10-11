@@ -19,7 +19,7 @@ def as_create():
         LaunchConfigurationName='samsara-lg',
         LoadBalancerNames=['samsara-lb'],
         HealthCheckType='ELB',
-        HealthCheckGracePeriod=120,
+        HealthCheckGracePeriod=300,
         MinSize=1,
         MaxSize=3,
         DesiredCapacity=2,
