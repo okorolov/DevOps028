@@ -34,7 +34,7 @@ def lb_create():
     response = balancer.configure_health_check(
         LoadBalancerName='samsara-lb',
         HealthCheck={
-            'Target': 'TCP',
+            'Target': 'TCP:9000',
             'Interval': 5,
             'Timeout': 2,
             'UnhealthyThreshold': 5,
