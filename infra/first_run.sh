@@ -19,7 +19,7 @@ export DB_PASS="$(grep password /build_env/liquibase/liquibase.properties | awk 
 export DB_USER="$(grep username /build_env/liquibase/liquibase.properties | awk '{print $2}')"
 export DB_NAME="$(grep url /build_env/liquibase/liquibase.properties | awk '{print $2}' | sed  's/.*5432\///')"
 export DB_HOST="$(aws rds describe-db-instances --region eu-west-1 --query "DBInstances[*].Endpoint.Address" --output text)"
-sed -i "s/localhost/$DB_HOST/g" /build_env/liquibase/liquibase.properties
+sed -i "s/localhost/$DB_HOST/g" /infrastructure/build_env/liquibase/liquibase.properties
 bash /infrastructure/liquibase \
     --defaultsFile=/infrastructure/build_env/liquibase/liquibase.properties \
     --changeLogFile=/infrastructure/build_env/liquibase/changelogs/changelog-main.xml \
