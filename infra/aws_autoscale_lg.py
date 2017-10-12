@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 import boto3
+import time
 
 user_data = '''#!/bin/bash
 aws s3 --region=eu-west-1 cp s3://samsara-infrastructure/first_run.sh .
@@ -15,7 +16,9 @@ def lg_create():
     print('Deleting OLD Launch Group, please wait...')
     try:
         autoscaling.delete_auto_scaling_group(AutoScalingGroupName='samsara-as', ForceDelete=True)
+        time.sleep(10)
         autoscaling.delete_launch_configuration(LaunchConfigurationName='samsara-lg')
+        time.sleep(10)
     except:
         pass
     print('Creating new Launch Configuration')

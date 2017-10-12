@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 import boto3
+import time
 
 print('Loading function')
 
@@ -10,6 +11,7 @@ def as_create():
     print('Deleting OLD Load Balancer, please wait...')
     try:
         autoscaling.delete_auto_scaling_group(AutoScalingGroupName='samsara-as', ForceDelete=True)
+        time.sleep(10)
     except:
         pass
     print('Creating new Autoscaling Group')
