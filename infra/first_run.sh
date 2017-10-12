@@ -15,9 +15,9 @@ aws s3 cp s3://samsara-builds/Samsara-1.3.5.RELEASE.jar .
 tar -xvf samsara_infra.tar.gz
 whilerun=1
 while [ $whilerun = 1 ]; do state=$(aws rds describe-db-instances --region eu-west-1 --query "DBInstances[*].DBInstanceStatus" --output text); if [ "$state" == "available" ]; then whilerun='0'; else sleep 10; fi; done
-export DB_PASS="$(grep password /build_env/liquibase/liquibase.properties | awk '{print $2}')"
-export DB_USER="$(grep username /build_env/liquibase/liquibase.properties | awk '{print $2}')"
-export DB_NAME="$(grep url /build_env/liquibase/liquibase.properties | awk '{print $2}' | sed  's/.*5432\///')"
+export DB_PASS="$(grep password /infrastructure/build_env/liquibase/liquibase.properties | awk '{print $2}')"
+export DB_USER="$(grep username /infrastructure/build_env/liquibase/liquibase.properties | awk '{print $2}')"
+export DB_NAME="$(grep url /infrastructure/build_env/liquibase/liquibase.properties | awk '{print $2}' | sed  's/.*5432\///')"
 export DB_HOST="$(aws rds describe-db-instances --region eu-west-1 --query "DBInstances[*].Endpoint.Address" --output text)"
 sed -i "s/localhost/$DB_HOST/g" /infrastructure/build_env/liquibase/liquibase.properties
 bash /infrastructure/liquibase \
