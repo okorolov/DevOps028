@@ -31,6 +31,16 @@ def lb_create():
         Subnets=['subnet-9cb528d5', 'subnet-e4d607bf'],
         SecurityGroups=['sg-a7214adf']
     )
+    response = balancer.configure_health_check(
+        LoadBalancerName='samsara-lb',
+        HealthCheck={
+            'Target': 'TCP',
+            'Interval': 5,
+            'Timeout': 2,
+            'UnhealthyThreshold': 5,
+            'HealthyThreshold': 2
+        }
+    )
     print(samsara_lb)
-
+    print(response)
 lb_create()
