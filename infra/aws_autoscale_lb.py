@@ -13,6 +13,9 @@ def lb_create():
     try:
         autoscaling.delete_auto_scaling_group(AutoScalingGroupName='samsara-as', ForceDelete=True)
         time.sleep(10)
+    except:
+        pass
+    try:
         balancer.delete_load_balancer(LoadBalancerName='samsara-lb')
         time.sleep(10)
     except:

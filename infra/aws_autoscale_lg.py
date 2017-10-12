@@ -17,6 +17,9 @@ def lg_create():
     try:
         autoscaling.delete_auto_scaling_group(AutoScalingGroupName='samsara-as', ForceDelete=True)
         time.sleep(10)
+    except:
+        pass
+    try:
         autoscaling.delete_launch_configuration(LaunchConfigurationName='samsara-lg')
         time.sleep(10)
     except:
