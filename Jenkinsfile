@@ -21,6 +21,8 @@ pipeline {
 		}
 		stage('Archive Artifact') {
 			steps {
+			    sh "BUILD_NAME=ls /target | grep jar"
+			    sh "aws ssm put-parameter --name BUILD_NAME --value="${BUILD_NAME}" --type String --overwrite"
 			    archive 'target/*.jar'
 			}
 		}
@@ -43,19 +45,19 @@ pipeline {
 				sh "./infra/aws_rds_create.py"
 			}
 		}
-		stage('Prepare LC') {
+		stage('Prepare Launch Configuration') {
 			steps {
 				sh "chmod +x infra/aws_autoscale_lg.py"
 				sh "./infra/aws_autoscale_lg.py"
 			}
 		}
-		stage('Prepare LB') {
+		stage('Prepare Load Balancer') {
 			steps {
 				sh "chmod +x infra/aws_autoscale_lb.py"
 				sh "./infra/aws_autoscale_lb.py"
 			}
 		}
-		stage('Prepare AS') {
+		stage('Start Autoscaling Group') {
 			steps {
 				sh "chmod +x infra/aws_autoscale_as.py"
 				sh "./infra/aws_autoscale_as.py"

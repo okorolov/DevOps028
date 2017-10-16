@@ -10,8 +10,9 @@ aws s3 cp s3://samsara-infrastructure/postgresql-42.1.4.jar .
 tar -xvf liquibase-3.5.3-bin.tar.gz
 mkdir build_env
 cd build_env/
+export BUILD_NAME="$(aws get-parameters --names "BUILD_NAME")"
 aws s3 cp s3://samsara-infrastructure/samsara_infra.tar.gz .
-aws s3 cp s3://samsara-builds/Samsara-1.3.5.RELEASE.jar .
+aws s3 cp s3://samsara-builds/${BUILD_NAME} .
 tar -xvf samsara_infra.tar.gz
 whilerun=1
 while [ $whilerun = 1 ]; do state=$(aws rds describe-db-instances --region eu-west-1 --query "DBInstances[*].DBInstanceStatus" --output text); if [ "$state" == "available" ]; then whilerun='0'; else sleep 10; fi; done
@@ -24,4 +25,4 @@ bash /infrastructure/liquibase \
     --defaultsFile=/infrastructure/build_env/liquibase/liquibase.properties \
     --changeLogFile=/infrastructure/build_env/liquibase/changelogs/changelog-main.xml \
     --classpath=/infrastructure/postgresql-42.1.4.jar update
-java -jar Samsara-1.3.5.RELEASE.jar
+java -jar ${BUILD_NAME}

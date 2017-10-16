@@ -8,8 +8,8 @@ autoscaling = boto3.client('autoscaling', region_name='eu-west-1')
 balancer = boto3.client('elb', region_name='eu-west-1')
 
 def lb_create():
-    # Try to delete an existing Load Balancer
-    print('Deleting OLD Load Balancer, please wait...')
+    # Try to delete an existing Autoscaling Group
+    print('Deleting OLD Autoscaling Group, please wait...')
     try:
         autoscaling.delete_auto_scaling_group(AutoScalingGroupName='samsara-as', ForceDelete=True)
         time.sleep(10)
@@ -20,8 +20,8 @@ def lb_create():
         time.sleep(10)
     except:
         pass
-    print('Creating new Load Balancer')
-    # Create new Load Balancer
+    print('Creating new Autoscaling Group')
+    # Create new Autoscaling Group
     samsara_lb = balancer.create_load_balancer(
         LoadBalancerName='samsara-lb',
         Listeners=[{'Protocol':'HTTP',
