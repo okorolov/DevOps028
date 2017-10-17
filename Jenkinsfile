@@ -72,7 +72,7 @@ pipeline {
 		stage('Send the new weblink') {
 		    steps {
 		        sh 'echo "Waiting for RDS to come up"'
-		        sh 'sleep 200'
+		        sh 'sleep 201'
 		        sh 'BALANCER_NAME="$(aws elb describe-load-balancers --region=eu-west-1 --query "LoadBalancerDescriptions[*].CanonicalHostedZoneName" --output text)" && ' +
 		           'chmod +x ./infra/aws_sns.py && ' +
 		           './infra/aws_sns.py ${BALANCER_NAME}'
