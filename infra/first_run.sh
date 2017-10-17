@@ -10,7 +10,7 @@ aws s3 cp s3://samsara-infrastructure/postgresql-42.1.4.jar .
 tar -xvf liquibase-3.5.3-bin.tar.gz
 mkdir build_env
 cd build_env/
-export BUILD_NAME="$(aws ssm get-parameters --names "BUILD_NAME")"
+export BUILD_NAME="$(aws ssm get-parameters --region=eu-west-1 --names "BUILD_NAME")"
 aws s3 cp s3://samsara-infrastructure/samsara_infra.tar.gz .
 aws s3 cp s3://samsara-builds/${BUILD_NAME} .
 tar -xvf samsara_infra.tar.gz
