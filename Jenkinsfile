@@ -69,6 +69,13 @@ pipeline {
 				sh "./infra/aws_autoscale_as.py"
 			}
 		}
+		stage('Send the new weblink') {
+		    steps {
+		        sh 'BALANCER_NAME="$(aws elb describe-load-balancers --region=eu-west-1 --query "LoadBalancerDescriptions[*].CanonicalHostedZoneName" --output text)" && ' +
+		           'chmod +x ./infra/aws_cleanup.py && ' +
+		           './infra/aws_cleanup.py ${BALANCER_NAME}'
+		    }
+		}
 
 	}
 }
