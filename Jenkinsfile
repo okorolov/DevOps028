@@ -21,9 +21,8 @@ pipeline {
 		}
 		stage('Archive Artifact') {
 			steps {
-			    sh 'export BUILD_NAME=`ls ./target | grep jar | grep -v original`'
-			    sh 'echo $BUILD_NAME'
-			    sh 'aws ssm put-parameter --region=eu-west-1 --name BUILD_NAME --value="${BUILD_NAME}" --type String --overwrite'
+			    sh 'export BUILD_NAME=`ls ./target | grep jar | grep -v original` && ' +
+			       'aws ssm put-parameter --region=eu-west-1 --name BUILD_NAME --value="${BUILD_NAME}" --type String --overwrite'
 			    archive 'target/*.jar'
 			}
 		}
