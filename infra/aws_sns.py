@@ -8,7 +8,7 @@ def send_new_samsara_ip(new_samsara_ip):
     reply_to = "oleksii.korolov@protonmail.com"
     subject = "Samsara new IP"
     message = "http://" + str(new_samsara_ip)
-    client = boto3.client('ses')
+    client = boto3.client('ses', region_name='eu-west-1')
     response = client.send_email(
         Source=from_email,
         Destination={'ToAddresses': [to_email]},
