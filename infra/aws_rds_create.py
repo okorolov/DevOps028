@@ -26,12 +26,6 @@ def s3_get_properties():
 def rds_create(db_username, db_password, db_name):
     print('Start RDS creation')
     rds = boto3.client('rds', region_name='eu-west-1')
-    # Try to delete an existing samsara rds
-    print('Deleting OLD RDS, please wait...')
-    try:
-        rds.delete_db_instance(DBInstanceIdentifier='samsara-postgres', SkipFinalSnapshot=True)
-    except:
-        pass
     # Wait until instance is deleted
     running = True
     while running:

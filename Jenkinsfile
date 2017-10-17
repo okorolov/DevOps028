@@ -4,6 +4,12 @@ pipeline {
     tools {maven 'maven 3.5.0'}
 
     stages {
+        stage('AWS Cleanup') {
+            steps {
+				sh "chmod +x infra/aws_cleanup.py"
+				sh "./infra/aws_cleanup.py"
+            }
+        }
         stage('Checkout') {
             steps {git url: 'https://github.com/okorolov/DevOps028'}
         }

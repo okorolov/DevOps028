@@ -12,18 +12,6 @@ print('Loading function')
 autoscaling = boto3.client('autoscaling', region_name='eu-west-1')
 
 def lg_create():
-    # Try to delete an existing Launch Configuration
-    print('Deleting OLD Launch Group, please wait...')
-    try:
-        autoscaling.delete_auto_scaling_group(AutoScalingGroupName='samsara-as', ForceDelete=True)
-        time.sleep(10)
-    except:
-        pass
-    try:
-        autoscaling.delete_launch_configuration(LaunchConfigurationName='samsara-lg')
-        time.sleep(10)
-    except:
-        pass
     print('Creating new Launch Configuration')
     # Create new Launch Configuration
     samsara_lg = autoscaling.create_launch_configuration(
