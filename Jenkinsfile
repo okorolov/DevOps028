@@ -22,7 +22,7 @@ pipeline {
 		stage('Archive Artifact') {
 			steps {
 			    sh "BUILD_NAME=ls /target | grep jar"
-			    sh "aws ssm put-parameter --name BUILD_NAME --value="${BUILD_NAME}" --type String --overwrite"
+			    sh 'aws ssm put-parameter --name BUILD_NAME --value="${BUILD_NAME}" --type String --overwrite'
 			    archive 'target/*.jar'
 			}
 		}
