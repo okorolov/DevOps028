@@ -18,4 +18,4 @@ def send_new_samsara_ip(new_samsara_ip):
     )
     print(response['MessageId'])
 
-send_new_samsara_ip(str(sys.argv))
+send_new_samsara_ip(str(sys.argv[1]))
